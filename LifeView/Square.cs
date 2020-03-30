@@ -2,19 +2,15 @@
 
 namespace LifeView
 {
-    public class Square
+    public struct Square
     {
         public Point possition;
-        public bool isAlive = false;
+        public bool isAlive;
 
         public Square(Point possition)
         {
             this.possition = possition;
-        }
-
-        public Square Clone()
-        {
-            return new Square(possition) { isAlive = this.isAlive };
+            isAlive = false;
         }
     }
 }

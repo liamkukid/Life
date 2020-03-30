@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace LifeView
 {
-    public class Field : Form
+    public class MainView : Form
     {
         int sideOfSquare = 15;
         int countColumns = 80;
@@ -13,7 +13,7 @@ namespace LifeView
         FormOfLife formOfLife = new FormOfLife();
         GameStrategy strategy = new GameStrategy();
 
-        public Field()
+        public MainView()
         {
             int currentXPos = 0;
             int currentYPos = 0;

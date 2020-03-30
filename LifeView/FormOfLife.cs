@@ -6,14 +6,9 @@ namespace LifeView
     {
         private int rows = 1;
         private int columns = 1;
-        //private bool[][] livingPosition = new bool[1][]
-        //{
-        //    new bool[5] { true, true, true, true, true }
-        //};
-
         private bool[][] livingPosition = new bool[1][]
         {
-            new bool[1] { true }
+            new bool[5] { true, true, true, true, true }
         };
 
         public Square[][] ApplyFormOfLife(Square[][] life, Point startPosition)
