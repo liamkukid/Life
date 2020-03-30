@@ -1,7 +1,9 @@
-﻿namespace LifeView
+﻿using System.Linq;
+
+namespace LifeView
 {
-    public class GameStrategy : IStrategy
-    {        
+    class LifeStrategy : IStrategy
+    {
         public Square[][] Apply(Square[][] life)
         {
             Square[][] newLife = new Square[life.Length][];
@@ -13,14 +15,20 @@
                     newLife[row][column] = life[row][column];
                     var state = new StateOfNeighboringCells(life);
                     state.CreateState(row, column);
-                    if(!state.isLeftAlive && !state.isRightAlive)
-                        newLife[row][column].isAlive = false;
-                    if (!state.isLeftAlive && state.isRightAlive)
-                        newLife[row][column].isAlive = false;
-                    if (state.isLeftAlive && !state.isRightAlive)
+                    var aliveNeighboringCount = state.neighboringStateList.Where(x => x == true).Count();
+                    if (life[row][column].isAlive == false && aliveNeighboringCount == 3)
+                    {
                         newLife[row][column].isAlive = true;
-                    if (state.isLeftAlive && state.isRightAlive)
+                    }
+                    if (life[row][column].isAlive == true && (aliveNeighboringCount == 3 || aliveNeighboringCount == 2))
+                    {
                         newLife[row][column].isAlive = true;
+                    }
+                    if (life[row][column].isAlive == true && (aliveNeighboringCount > 3 || aliveNeighboringCount < 2))
+                    {
+                        newLife[row][column].isAlive = false;
+                    }
+
                 }
             }
             return newLife;

@@ -1,7 +1,11 @@
-﻿namespace LifeView
+﻿using System.Collections.Generic;
+
+namespace LifeView
 {
     public class StateOfNeighboringCells
     {
+        public List<bool> neighboringStateList = new List<bool>();
+
         public bool isLeftTopAlive;
         public bool isTopAlive;
         public bool isRightTopAlive;
@@ -66,7 +70,9 @@
 
             isRightTopAlive = life[rows[0]][columns[2]].isAlive;            
             isRightAlive = life[rows[1]][columns[2]].isAlive;
-            isRightBottomAlive = life[rows[2]][columns[2]].isAlive; 
+            isRightBottomAlive = life[rows[2]][columns[2]].isAlive;
+
+            neighboringStateList.AddRange(new List<bool> { isLeftTopAlive, isLeftAlive, isLeftBottomAlive, isTopAlive, isBottomAlive, isRightTopAlive, isRightAlive, isRightBottomAlive });
         }
     }
 }

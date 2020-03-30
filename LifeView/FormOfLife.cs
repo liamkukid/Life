@@ -4,20 +4,17 @@ namespace LifeView
 {
     public class FormOfLife
     {
-        private const int rows = 5;
-        private const int columns = 5;
+        private const int rows = 3;
+        private const int columns = 3;
         private bool[][] livingPosition;
 
         public FormOfLife()
         {
             livingPosition = new bool[rows][]
             {
-                new bool[columns] { false, false, true, false, true },
-                new bool[columns] { false, true, true, false, false },
-                new bool[columns] { false, false, true, true, true },
-                new bool[columns] { true, false, true, true, true },
-                new bool[columns] { false, false, true, true, false }
-
+                new bool[columns] { false, false, true },
+                new bool[columns] { true, false, true },
+                new bool[columns] { false, true, true }
             };
         }
 

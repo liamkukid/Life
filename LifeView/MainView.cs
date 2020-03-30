@@ -11,7 +11,7 @@ namespace LifeView
         int countRows = 40;
         Square[][] life;
         FormOfLife formOfLife = new FormOfLife();
-        GameStrategy strategy = new GameStrategy();
+        IStrategy strategy = new LifeStrategy();
 
         public MainView()
         {
@@ -35,7 +35,7 @@ namespace LifeView
             FormBorderStyle = FormBorderStyle.FixedDialog;
 
             var timer = new Timer();
-            timer.Interval = 10;
+            timer.Interval = 300;
             timer.Tick += TimerTick;
             timer.Start();
         }

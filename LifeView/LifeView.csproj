@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IStrategy.cs" />
+    <Compile Include="LifeStrategy.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
