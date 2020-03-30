@@ -4,12 +4,22 @@ namespace LifeView
 {
     public class FormOfLife
     {
-        private int rows = 1;
-        private int columns = 1;
-        private bool[][] livingPosition = new bool[1][]
+        private const int rows = 5;
+        private const int columns = 5;
+        private bool[][] livingPosition;
+
+        public FormOfLife()
         {
-            new bool[5] { true, true, true, true, true }
-        };
+            livingPosition = new bool[rows][]
+            {
+                new bool[columns] { false, false, true, false, true },
+                new bool[columns] { false, true, true, false, false },
+                new bool[columns] { false, false, true, true, true },
+                new bool[columns] { true, false, true, true, true },
+                new bool[columns] { false, false, true, true, false }
+
+            };
+        }
 
         public Square[][] ApplyFormOfLife(Square[][] life, Point startPosition)
         {

@@ -30,12 +30,12 @@ namespace LifeView
                 }
                 currentYPos += sideOfSquare;
             }
-            life = formOfLife.ApplyFormOfLife(life, new Point(20, 10));
+            life = formOfLife.ApplyFormOfLife(life, new Point(20, 20));
             ClientSize = new Size(sideOfSquare * countColumns, sideOfSquare * countRows);
             FormBorderStyle = FormBorderStyle.FixedDialog;
 
             var timer = new Timer();
-            timer.Interval = 500;
+            timer.Interval = 10;
             timer.Tick += TimerTick;
             timer.Start();
         }
@@ -60,7 +60,7 @@ namespace LifeView
 
         private void TimerTick(object sender, EventArgs args)
         {
-            strategy.Apply(ref life);
+            life = strategy.Apply(life);
             Invalidate();
         }        
     }
