@@ -2,13 +2,13 @@
 
 namespace LifeView
 {
-    public class FormOfLife
+    public class Glider : IFormOfLife
     {
         private const int rows = 3;
         private const int columns = 3;
         private bool[][] livingPosition;
 
-        public FormOfLife()
+        public Glider()
         {
             livingPosition = new bool[rows][]
             {
@@ -18,7 +18,7 @@ namespace LifeView
             };
         }
 
-        public Square[][] ApplyFormOfLife(Square[][] life, Point startPosition)
+        public Square[][] Apply(Square[][] life, Point startPosition)
         {
             int startRow = startPosition.Y;
             int startColumn = startPosition.X;

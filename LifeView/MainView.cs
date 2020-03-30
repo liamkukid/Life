@@ -6,11 +6,11 @@ namespace LifeView
 {
     public class MainView : Form
     {
-        int sideOfSquare = 15;
+        int sideOfSquare = 12;
         int countColumns = 80;
         int countRows = 40;
         Square[][] life;
-        FormOfLife formOfLife = new FormOfLife();
+        IFormOfLife formOfLife = new Glider();
         IStrategy strategy = new LifeStrategy();
 
         public MainView()
@@ -30,12 +30,20 @@ namespace LifeView
                 }
                 currentYPos += sideOfSquare;
             }
-            life = formOfLife.ApplyFormOfLife(life, new Point(20, 20));
+            life = formOfLife.Apply(life, new Point(0, 0));
+            life = formOfLife.Apply(life, new Point(10, 0));
+            life = formOfLife.Apply(life, new Point(20, 0));
+            life = formOfLife.Apply(life, new Point(30, 0));
+            life = formOfLife.Apply(life, new Point(40, 0));
+            life = formOfLife.Apply(life, new Point(50, 0));
+            life = formOfLife.Apply(life, new Point(60, 0));
+            life = formOfLife.Apply(life, new Point(70, 0));
+
             ClientSize = new Size(sideOfSquare * countColumns, sideOfSquare * countRows);
             FormBorderStyle = FormBorderStyle.FixedDialog;
 
             var timer = new Timer();
-            timer.Interval = 300;
+            timer.Interval = 200;
             timer.Tick += TimerTick;
             timer.Start();
         }
