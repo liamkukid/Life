@@ -89,7 +89,10 @@
     <EmbeddedResource Include="Forms\Row.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Forms\Honeycomb.txt" />
+    <EmbeddedResource Include="Forms\Honeycomb.txt" />
+    <EmbeddedResource Include="Icons\add.ico" />
+    <EmbeddedResource Include="Icons\edit.ico" />
+    <EmbeddedResource Include="Icons\microbe.ico" />
     <EmbeddedResource Include="Forms\Stick.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

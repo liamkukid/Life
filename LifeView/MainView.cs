@@ -8,8 +8,8 @@ namespace LifeView
     public partial class MainView : Form
     {
         int sideOfSquare = 12;
-        int countColumns = 80;
-        int countRows = 40;
+        int countColumns = 50;
+        int countRows = 50;
         Square[][] field;
         LifeStrategy strategy = new LifeStrategy();
         private Timer timer = new Timer();
@@ -18,18 +18,47 @@ namespace LifeView
         {
             InitializeComponent();
             CreateField();
-            field.Apply(Resources.Glaider, new Point(10, 10));
             ClientSize = new Size(sideOfSquare * countColumns, sideOfSquare * countRows + toolStrip1.Height);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            StartPosition = FormStartPosition.CenterScreen;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Text = "Игра жизнь";
+            Icon = Resources.microbe;
+            toolStripDropDownButton1.Image = Resources.edit.ToBitmap();
+            toolStripDropDownButton2.Image = Resources.add.ToBitmap();
             KeyPress += MainView_KeyPress;
-            this.MouseDown += MainView_MouseDown;
-            timer.Interval = 10;
+            MouseDown += MainView_MouseDown;
+            MouseMove += MainView_MouseMove;
+            timer.Interval = 100;
             timer.Tick += TimerTick;
-            timer.Start();
+        }
+
+        private void MainView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
+            {
+                var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
+
+                for (int row = 0; row < field.Length; row++)
+                {
+                    for (int column = 0; column < field[row].Length; column++)
+                    {
+                        var square = field[row][column];
+                        if (square.possition.X < location.X && square.possition.X + sideOfSquare > location.X &&
+                        square.possition.Y < location.Y && square.possition.Y + sideOfSquare > location.Y)
+                        {
+                            field[row][column].isAlive = e.Button == MouseButtons.Left;
+                            Invalidate();
+                            return;
+                        }
+                    }
+                } 
+            }
         }
 
         private void MainView_MouseDown(object sender, MouseEventArgs e)
-        {
+        {            
             var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
             for (int row = 0; row < field.Length; row++)
             {
@@ -39,7 +68,7 @@ namespace LifeView
                     if (square.possition.X < location.X && square.possition.X + sideOfSquare > location.X &&
                     square.possition.Y < location.Y && square.possition.Y + sideOfSquare > location.Y)
                     {
-                        field[row][column].isAlive = !field[row][column].isAlive;
+                        field[row][column].isAlive = e.Button == MouseButtons.Left;
                         Invalidate();
                         return;
                     }
