@@ -26,7 +26,8 @@ namespace LifeView
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    life[startRow + row][startColumn + column].isAlive = livingPosition[row][column];
+                    if(startRow + row < life.Length && startColumn + column < life[startRow + row].Length)
+                        life[startRow + row][startColumn + column].isAlive = livingPosition[row][column];
                 }
             }
             return life;
