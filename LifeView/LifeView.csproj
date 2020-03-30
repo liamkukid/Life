@@ -52,10 +52,8 @@
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="IFormOfLife.cs" />
-    <Compile Include="IStrategy.cs" />
     <Compile Include="LifeStrategy.cs" />
-    <Compile Include="Glaider.cs" />
+    <Compile Include="FieldExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Square.cs" />
@@ -71,6 +69,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -84,6 +83,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Glaider.txt" />
+    <EmbeddedResource Include="Forms\Row.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Forms\Honeycomb.txt" />
+    <EmbeddedResource Include="Forms\Stick.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

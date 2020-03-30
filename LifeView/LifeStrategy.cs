@@ -2,7 +2,7 @@
 
 namespace LifeView
 {
-    class LifeStrategy : IStrategy
+    class LifeStrategy
     {
         public Square[][] Apply(Square[][] life)
         {
