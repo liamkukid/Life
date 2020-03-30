@@ -53,7 +53,8 @@ namespace LifeView
                 foreach(var square in row)
                 {
                     var color = (square.isAlive) ? Brushes.Black : Brushes.White;
-                    e.Graphics.FillRectangle(color, square.possition.X, square.possition.Y, sideOfSquare, sideOfSquare);                    
+                    e.Graphics.FillRectangle(color, square.possition.X, square.possition.Y, sideOfSquare, sideOfSquare);                     
+                    e.Graphics.DrawRectangle(new Pen(Color.Black), square.possition.X, square.possition.Y, sideOfSquare, sideOfSquare);
                 }
             }
         }
