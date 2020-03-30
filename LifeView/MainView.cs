@@ -7,9 +7,9 @@ namespace LifeView
 {
     public partial class MainView : Form
     {
-        int sideOfSquare = 12;
-        int countColumns = 50;
-        int countRows = 50;
+        int sideOfSquare = 10;
+        int countColumns = 60;
+        int countRows = 60;
         Square[][] field;
         LifeStrategy strategy = new LifeStrategy();
         private Timer timer = new Timer();
@@ -85,7 +85,7 @@ namespace LifeView
                 else
                     timer.Start();
             }
-            if (e.KeyChar == 'c')
+            if (e.KeyChar == 'c' || e.KeyChar == 'с')
             {
                 Clear();
             }
