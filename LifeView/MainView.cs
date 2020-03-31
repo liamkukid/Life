@@ -7,11 +7,11 @@ namespace LifeView
 {
     public partial class MainView : Form
     {
-        int sideOfSquare = 10;
-        int countColumns = 60;
-        int countRows = 60;
-        Square[][] field;
-        LifeStrategy strategy = new LifeStrategy();
+        private int sideOfSquare = 10;
+        private int countColumns = 60;
+        private int countRows = 60;
+        private Square[][] field;
+        private LifeStrategy strategy = new LifeStrategy();
         private Timer timer = new Timer();
 
         public MainView()
@@ -27,38 +27,26 @@ namespace LifeView
             Icon = Resources.microbe;
             toolStripDropDownButton1.Image = Resources.edit.ToBitmap();
             toolStripDropDownButton2.Image = Resources.add.ToBitmap();
+            timer.Interval = 100;
             KeyPress += MainView_KeyPress;
             MouseDown += MainView_MouseDown;
             MouseMove += MainView_MouseMove;
-            timer.Interval = 100;
             timer.Tick += TimerTick;
         }
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
-            {
-                var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
-
-                for (int row = 0; row < field.Length; row++)
-                {
-                    for (int column = 0; column < field[row].Length; column++)
-                    {
-                        var square = field[row][column];
-                        if (square.possition.X < location.X && square.possition.X + sideOfSquare > location.X &&
-                        square.possition.Y < location.Y && square.possition.Y + sideOfSquare > location.Y)
-                        {
-                            field[row][column].isAlive = e.Button == MouseButtons.Left;
-                            Invalidate();
-                            return;
-                        }
-                    }
-                } 
-            }
+                SetLiveByMousePosition(e);
         }
 
         private void MainView_MouseDown(object sender, MouseEventArgs e)
-        {            
+        {
+            SetLiveByMousePosition(e);
+        }
+
+        private void SetLiveByMousePosition(MouseEventArgs e)
+        {
             var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
             for (int row = 0; row < field.Length; row++)
             {
@@ -105,7 +93,7 @@ namespace LifeView
                 {                    
                     var color = (square.isAlive) ? Brushes.Black : Brushes.White;
                     e.Graphics.FillRectangle(color, square.possition.X, square.possition.Y + toolStrip1.Height, sideOfSquare, sideOfSquare);
-                    e.Graphics.DrawRectangle(new Pen(Color.Black), square.possition.X, square.possition.Y + toolStrip1.Height, sideOfSquare, sideOfSquare);
+                    e.Graphics.DrawRectangle(new Pen(Color.Gray), square.possition.X, square.possition.Y + toolStrip1.Height, sideOfSquare, sideOfSquare);
                 }
             }
         }
