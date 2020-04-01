@@ -10,8 +10,8 @@ namespace LifeView
         public readonly int width;
         public readonly int height;
 
-        private readonly Square[,] field;
-        private int sideOfSquare = 10;
+        protected readonly Square[,] field;
+        protected readonly int sideOfSquare = 10;
 
         public Field()
         {
@@ -42,7 +42,7 @@ namespace LifeView
                 field[x, y].isAlive = isAlive;
         }
 
-        public void Paint(Graphics graphics, int topIndent)
+        public virtual void Paint(Graphics graphics, int topIndent)
         {
             foreach (var item in field)
             {

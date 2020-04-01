@@ -29,36 +29,44 @@ namespace LifeView
             MouseDown += MainView_MouseDown;
             MouseMove += MainView_MouseMove;
             timer.Tick += TimerTick;
-            addStickToolStripMenuItem.Click += (s, e) => 
-                field.Apply(Resources.Stick, new Point(10, 10));
-            addHoneycombToolStripMenuItem.Click += (s, e) => 
-                field.Apply(Resources.Honeycomb, new Point(10, 10));
-            addRowToolStripMenuItem.Click += (s, e) =>
-                 field.Apply(Resources.Row, new Point(10, 10));
-            addGlaiderToolStripMenuItem.Click += (s, e) =>
-                field.Apply(Resources.Glaider, new Point(10, 10));
-            clearToolStripMenuItem.Click += (s, e) =>
-                Clear();
-            playToolStripMenuItem.Click += (s, e) =>
-                timer.Start();
-            stopToolStripMenuItem.Click += (s, e) =>
-                timer.Stop();
+            addStickToolStripMenuItem.Click += (s, e) => SetWrapper(Resources.Stick);
+            addHoneycombToolStripMenuItem.Click += (s, e) => SetWrapper(Resources.Honeycomb);
+            addRowToolStripMenuItem.Click += (s, e) => SetWrapper(Resources.Row);
+            addGlaiderToolStripMenuItem.Click += (s, e) => SetWrapper(Resources.Glaider);
+            clearToolStripMenuItem.Click += (s, e) => Clear();
+            playToolStripMenuItem.Click += (s, e) => timer.Start();
+            stopToolStripMenuItem.Click += (s, e) => timer.Stop();
         }
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
+            if (field is FieldWrapper fieldWrapper)
+            {
+                var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
+                fieldWrapper.Apply(location);
+                Invalidate();
+                return;
+            }
             if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
                 SetLiveByMousePosition(e);
         }
 
         private void MainView_MouseDown(object sender, MouseEventArgs e)
         {
+            if (field is FieldWrapper fieldWrapper && e.Button == MouseButtons.Left)
+            {
+                var figure = fieldWrapper.Figure;
+                Field newField = fieldWrapper as Field;
+                field = new FieldWrapper(newField, figure);
+                Invalidate();
+                return;
+            }
             SetLiveByMousePosition(e);
         }
 
         private void SetLiveByMousePosition(MouseEventArgs e)
         {
-            var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
+            var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);            
             field.ChageStateByLocation(location, e.Button == MouseButtons.Left, this);
         }
 
@@ -99,6 +107,11 @@ namespace LifeView
             field = new Field();
             Invalidate();
             timer.Stop();
+        }
+
+        private void SetWrapper(string figure)
+        {
+            field = new FieldWrapper(field, figure);
         }
     }
 }

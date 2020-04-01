@@ -11,6 +11,6 @@ namespace LifeView
         {
             this.possition = possition;
             isAlive = false;
-        }
+        }        
     }
 }
