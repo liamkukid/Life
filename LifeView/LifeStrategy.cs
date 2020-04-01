@@ -2,9 +2,9 @@
 
 namespace LifeView
 {
-    class LifeStrategy
+    static class LifeStrategy
     {
-        public Field GetNextGeneration(Field field)
+        public static Field GetNextGeneration(Field field)
         {
             Field newField = new Field();
             for (int x = 0; x < field.countColumns; x++)

@@ -56,7 +56,7 @@ namespace LifeView
         {
             var x = point.X / sideOfSquare;
             var y = point.Y / sideOfSquare;
-            if (x < countRows && y < countColumns)
+            if (x < countColumns && y < countRows)
             {
                 field[x, y].isAlive = newState;
                 form.Invalidate();

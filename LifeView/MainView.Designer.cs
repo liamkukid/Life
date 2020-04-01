@@ -35,10 +35,10 @@
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.добавитьГлайдерToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьПолосуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьСотыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьПалкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addGlaiderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addHoneycombToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addStickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,30 +72,27 @@
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.stopToolStripMenuItem.Text = "Stop";
-            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // playToolStripMenuItem
             // 
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
             this.playToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.playToolStripMenuItem.Text = "Play";
-            this.playToolStripMenuItem.Click += new System.EventHandler(this.playToolStripMenuItem_Click);
             // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             this.clearToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
             this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьГлайдерToolStripMenuItem,
-            this.добавитьПолосуToolStripMenuItem,
-            this.добавитьСотыToolStripMenuItem,
-            this.добавитьПалкуToolStripMenuItem});
+            this.addGlaiderToolStripMenuItem,
+            this.addRowToolStripMenuItem,
+            this.addHoneycombToolStripMenuItem,
+            this.addStickToolStripMenuItem});
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -104,31 +101,27 @@
             // 
             // добавитьГлайдерToolStripMenuItem
             // 
-            this.добавитьГлайдерToolStripMenuItem.Name = "добавитьГлайдерToolStripMenuItem";
-            this.добавитьГлайдерToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.добавитьГлайдерToolStripMenuItem.Text = "Добавить глайдер";
-            this.добавитьГлайдерToolStripMenuItem.Click += new System.EventHandler(this.addGliderToolStripMenuItem_Click);
+            this.addGlaiderToolStripMenuItem.Name = "добавитьГлайдерToolStripMenuItem";
+            this.addGlaiderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addGlaiderToolStripMenuItem.Text = "Добавить глайдер";
             // 
             // добавитьПолосуToolStripMenuItem
             // 
-            this.добавитьПолосуToolStripMenuItem.Name = "добавитьПолосуToolStripMenuItem";
-            this.добавитьПолосуToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.добавитьПолосуToolStripMenuItem.Text = "Добавить полосу";
-            this.добавитьПолосуToolStripMenuItem.Click += new System.EventHandler(this.addRowToolStripMenuItem_Click);
+            this.addRowToolStripMenuItem.Name = "добавитьПолосуToolStripMenuItem";
+            this.addRowToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addRowToolStripMenuItem.Text = "Добавить полосу";
             // 
             // добавитьСотыToolStripMenuItem
             // 
-            this.добавитьСотыToolStripMenuItem.Name = "добавитьСотыToolStripMenuItem";
-            this.добавитьСотыToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.добавитьСотыToolStripMenuItem.Text = "Добавить соты";
-            this.добавитьСотыToolStripMenuItem.Click += new System.EventHandler(this.добавитьСотыToolStripMenuItem_Click);
+            this.addHoneycombToolStripMenuItem.Name = "добавитьСотыToolStripMenuItem";
+            this.addHoneycombToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addHoneycombToolStripMenuItem.Text = "Добавить соты";
             // 
             // добавитьПалкуToolStripMenuItem
             // 
-            this.добавитьПалкуToolStripMenuItem.Name = "добавитьПалкуToolStripMenuItem";
-            this.добавитьПалкуToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.добавитьПалкуToolStripMenuItem.Text = "Добавить палку";
-            this.добавитьПалкуToolStripMenuItem.Click += new System.EventHandler(this.добавитьПалкуToolStripMenuItem_Click);
+            this.addStickToolStripMenuItem.Name = "добавитьПалкуToolStripMenuItem";
+            this.addStickToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addStickToolStripMenuItem.Text = "Добавить палку";
             // 
             // MainView
             // 
@@ -153,9 +146,9 @@
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripMenuItem добавитьГлайдерToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьПолосуToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьСотыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьПалкуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addGlaiderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addRowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addHoneycombToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addStickToolStripMenuItem;
     }
 }
