@@ -8,17 +8,17 @@ namespace LifeView
         private static int countCows;
         private static int countColumns;
 
-        public static void Apply(this Square[][] life, string figure, Point startPosition)
+        public static void Apply(this Field field, string figure, Point startPosition)
         {
-            var test = Parse(figure);
+            var parsedFigure = Parse(figure);
             int startRow = startPosition.Y;
             int startColumn = startPosition.X;
             for (int row = 0; row < countCows; row++)
             {
                 for (int column = 0; column < countColumns; column++)
                 {
-                    if(startRow + row < life.Length && startColumn + column < life[startRow + row].Length)
-                        life[startRow + row][startColumn + column].isAlive = test[row][column];
+                    if(startRow + row < field.countRows && startColumn + column < field.countColumns)
+                        field.ChangeState(startColumn + column, startRow + row, parsedFigure[row][column]);
                 }
             }
         }

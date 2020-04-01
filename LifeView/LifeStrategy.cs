@@ -4,34 +4,33 @@ namespace LifeView
 {
     class LifeStrategy
     {
-        public Square[][] Apply(Square[][] life)
+        public Field GetNextGeneration(Field field)
         {
-            Square[][] newLife = new Square[life.Length][];
-            for (int row = 0; row < life.Length; row++)
+            Field newField = new Field();
+            for (int x = 0; x < field.countColumns; x++)
             {
-                newLife[row] = new Square[life[row].Length];
-                for (int column = 0; column < life[row].Length; column++)
+                for (int y = 0; y < field.countRows; y++)
                 {
-                    newLife[row][column] = life[row][column];
-                    var state = new StateOfNeighboringCells(life);
-                    state.CreateState(row, column);
-                    var aliveNeighboringCount = state.neighboringStateList.Where(x => x == true).Count();
-                    if (life[row][column].isAlive == false && aliveNeighboringCount == 3)
+                    newField.ChangeState(x, y, field[x, y].isAlive);
+                    var state = new StateOfNeighboringCells(field);
+                    state.CreateState(y, x);
+                    var aliveNeighboringCount = state.neighboringStateList.Where(i => i == true).Count();
+                    if (field[x,y].isAlive == false && aliveNeighboringCount == 3)
                     {
-                        newLife[row][column].isAlive = true;
+                        newField.ChangeState(x, y, true);
                     }
-                    if (life[row][column].isAlive == true && (aliveNeighboringCount == 3 || aliveNeighboringCount == 2))
+                    if (field[x, y].isAlive == true && (aliveNeighboringCount == 3 || aliveNeighboringCount == 2))
                     {
-                        newLife[row][column].isAlive = true;
+                        newField.ChangeState(x, y, true);
                     }
-                    if (life[row][column].isAlive == true && (aliveNeighboringCount > 3 || aliveNeighboringCount < 2))
+                    if (field[x, y].isAlive == true && (aliveNeighboringCount > 3 || aliveNeighboringCount < 2))
                     {
-                        newLife[row][column].isAlive = false;
+                        newField.ChangeState(x, y, false);
                     }
 
                 }
             }
-            return newLife;
+            return newField;
         }
     }
 }

@@ -7,18 +7,15 @@ namespace LifeView
 {
     public partial class MainView : Form
     {
-        private int sideOfSquare = 10;
-        private int countColumns = 60;
-        private int countRows = 60;
-        private Square[][] field;
+        private Field field;
         private LifeStrategy strategy = new LifeStrategy();
         private Timer timer = new Timer();
 
-        public MainView()
+        public MainView(Field field)
         {
             InitializeComponent();
-            CreateField();
-            ClientSize = new Size(sideOfSquare * countColumns, sideOfSquare * countRows + toolStrip1.Height);
+            this.field = field;
+            ClientSize = new Size(field.width, field.height + toolStrip1.Height);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
@@ -48,20 +45,7 @@ namespace LifeView
         private void SetLiveByMousePosition(MouseEventArgs e)
         {
             var location = new Point(e.Location.X, e.Location.Y - toolStrip1.Height);
-            for (int row = 0; row < field.Length; row++)
-            {
-                for (int column = 0; column < field[row].Length; column++)
-                {
-                    var square = field[row][column];
-                    if (square.possition.X < location.X && square.possition.X + sideOfSquare > location.X &&
-                    square.possition.Y < location.Y && square.possition.Y + sideOfSquare > location.Y)
-                    {
-                        field[row][column].isAlive = e.Button == MouseButtons.Left;
-                        Invalidate();
-                        return;
-                    }
-                }
-            }
+            field.ChageStateByLocation(location, e.Button == MouseButtons.Left, this);
         }
 
         private void MainView_KeyPress(object sender, KeyPressEventArgs e)
@@ -87,20 +71,12 @@ namespace LifeView
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            foreach (var row in field)
-            {
-                foreach (var square in row)
-                {                    
-                    var color = (square.isAlive) ? Brushes.Black : Brushes.White;
-                    e.Graphics.FillRectangle(color, square.possition.X, square.possition.Y + toolStrip1.Height, sideOfSquare, sideOfSquare);
-                    e.Graphics.DrawRectangle(new Pen(Color.Gray), square.possition.X, square.possition.Y + toolStrip1.Height, sideOfSquare, sideOfSquare);
-                }
-            }
+            field.Paint(e.Graphics, toolStrip1.Height);
         }
 
         private void TimerTick(object sender, EventArgs args)
         {
-            field = strategy.Apply(field);
+            field = strategy.GetNextGeneration(field);
             Invalidate();
         }
 
@@ -119,28 +95,9 @@ namespace LifeView
             Clear();   
         }
 
-        private void CreateField()
-        {
-            int currentXPos = 0;
-            int currentYPos = 0;
-            field = new Square[countRows][];
-
-            for (int row = 0; row < field.Length; row++)
-            {
-                currentXPos = 0;
-                field[row] = new Square[countColumns];
-                for (int column = 0; column < field[row].Length; column++)
-                {
-                    field[row][column] = new Square(new Point(currentXPos, currentYPos));
-                    currentXPos += sideOfSquare;
-                }
-                currentYPos += sideOfSquare;
-            }
-        }
-
         private void Clear()
         {
-            CreateField();
+            field = new Field();
             Invalidate();
             timer.Stop();
         }
