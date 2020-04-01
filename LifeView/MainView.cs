@@ -53,12 +53,20 @@ namespace LifeView
 
         private void MainView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (field is FieldWrapper fieldWrapper && e.Button == MouseButtons.Left)
+            if (field is FieldWrapper fieldWrapper)
             {
-                var figure = fieldWrapper.Figure;
-                Field newField = fieldWrapper as Field;
-                field = new FieldWrapper(newField, figure);
-                Invalidate();
+                if (e.Button == MouseButtons.Left)
+                {
+                    var figure = fieldWrapper.Figure;
+                    Field newField = fieldWrapper as Field;
+                    field = new FieldWrapper(newField, figure);
+                    Invalidate();
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    field = fieldWrapper.BaseField;
+                    Invalidate();
+                }
                 return;
             }
             SetLiveByMousePosition(e);
