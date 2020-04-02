@@ -53,5 +53,13 @@ namespace LifeView
                         ChangeState(positionX + column, positionY + row, Figure[row][column]);
             }
         }
+
+        public Field ApplyWrapperToBaseField()
+        {
+            for (int x = 0; x < countColumns; x++)
+                for (int y = 0; y < countRows; y++)
+                    BaseField.ChangeState(x, y, field[x, y].isAlive);
+            return BaseField;
+        }
     }
 }

@@ -58,8 +58,8 @@ namespace LifeView
                 if (e.Button == MouseButtons.Left)
                 {
                     var figure = fieldWrapper.Figure;
-                    Field newField = fieldWrapper as Field;
-                    field = new FieldWrapper(newField, figure);
+                    Field newBaseField = fieldWrapper.ApplyWrapperToBaseField();
+                    field = new FieldWrapper(newBaseField, figure);
                     Invalidate();
                 }
                 else if (e.Button == MouseButtons.Right)
